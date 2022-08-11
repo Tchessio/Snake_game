@@ -5,7 +5,7 @@ import random
 
 pygame.init()
 
-# stale dane
+# Basic data
 SCREEN_W = 500
 SCREEN_H = 500
 BACKGROUND_COLOR = (0, 0, 0)
@@ -18,8 +18,6 @@ font = pygame.font.Font("arial.ttf", 20)
 
 # set up the screen, clock and points
 screen = pygame.display.set_mode([SCREEN_W, SCREEN_H])
-clock = pygame.time.Clock()
-points = 0
 
 
 # set up snake
@@ -76,7 +74,7 @@ def eat_food():
         return False
 
 
-# check collisions
+# check if the snake dies
 def check_collision():
     # check if snake crashes with the border
     if Snake.head[0] < 0 or Snake.head[1] < 0 or Snake.head[0] > SCREEN_W / BLOCK_SIZE - 1 or \
@@ -89,6 +87,12 @@ def check_collision():
 
 
 def reset():
+    
+# print points
+    Print("You have earned " & Snake.length & " points"
+    
+    
+# reset the game
     Snake.body = np.array([[0, 0], [0, 1], [0, 2]])
     Snake.head = Snake.body[-1]
     Snake.direction = "D"
