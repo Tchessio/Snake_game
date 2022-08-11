@@ -122,14 +122,16 @@ while running:
         y = block[1]
         pygame.draw.rect(screen, SNAKE_COLOR, (x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
 
+    # draw a food
+    pygame.draw.rect(screen, FOOD_COLOR, (Food.x * BLOCK_SIZE, Food.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
+
     # move the snake
     move(Snake.head[0], Snake.head[1])
 
     # check if the food was eaten
     eat_food()
 
-    # draw a food
-    pygame.draw.rect(screen, FOOD_COLOR, (Food.x * BLOCK_SIZE, Food.y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
+
 
     # check for the collision
     check_collision()
