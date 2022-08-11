@@ -14,7 +14,8 @@ FOOD_COLOR = (255, 17, 0)
 BLOCK_SIZE = 20
 SPEED = 80
 DIRECTION = "D"
-font = pygame.font.Font("arial.ttf", 20)
+FONT = pygame.font.Font("arial.ttf", 20)
+GAME = 0
 
 # set up the screen, clock and points
 screen = pygame.display.set_mode([SCREEN_W, SCREEN_H])
@@ -22,14 +23,14 @@ screen = pygame.display.set_mode([SCREEN_W, SCREEN_H])
 
 # set up snake
 class Snake:
-    # snake is the np array. It with 3 elements located on the top/left corner
+    # snake is the np array. It starts with 3 elements located on the top/left corner
     body = np.array([[0, 0], [0, 1], [0, 2]])
     head = body[-1]
     direction = DIRECTION
     length = 3
 
 
-# set up food
+# set up food. The first food starts with a fixed position. TODO randomise it
 class Food:
     x = 0
     y = 6
@@ -88,8 +89,10 @@ def check_collision():
 
 def reset():
     
-# print points
-    Print("You have earned " & Snake.length & " points"
+    # print points
+    global GAME
+    GAME += 1
+    print("Game " + str(GAME) + ". You have earned " + str(Snake.length) + " points")
     
     
 # reset the game
@@ -102,12 +105,13 @@ def reset():
 
 # run the game
 running = True
+
 while running:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        # check for user input
+        # check for user input TODO on esc button exits the game
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN and not Snake.direction == "U":
                 Snake.direction = "D"
@@ -135,8 +139,6 @@ while running:
     # check if the food was eaten
     eat_food()
 
-
-
     # check for the collision
     check_collision()
 
@@ -152,6 +154,3 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
-
-print(Snake.body)
-print(Snake.head)
